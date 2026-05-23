@@ -23,7 +23,7 @@ Pastikan Anda sudah menginstal **Node.js** (versi 18 ke atas disarankan) di komp
 ### Langkah-langkah
 1. **Masuk ke folder project**:
    ```bash
-   cd /Users/tomi/wardix/multi-ping
+   cd /multi-ping
    ```
 
 2. **Instal dependensi**:
