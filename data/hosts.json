@@ -1,0 +1,74 @@
+[
+  {
+    "id": "b5e0a7b0-8443-4400-af4d-5244de04b5f5",
+    "name": "Google DNS (ICMP)",
+    "host": "8.8.8.8",
+    "method": "icmp",
+    "port": null,
+    "url": null,
+    "group": "Public DNS",
+    "interval": 5,
+    "timeout": 2,
+    "active": true
+  },
+  {
+    "id": "3d30ae51-3018-484d-94a9-dd4e1d2f734f",
+    "name": "Google Website (HTTP/HTTPS)",
+    "host": "www.google.com",
+    "method": "http",
+    "port": null,
+    "url": "https://www.google.com",
+    "group": "Websites",
+    "interval": 8,
+    "timeout": 3,
+    "active": true
+  },
+  {
+    "id": "f0992bcc-9155-401e-96ab-518c32402c24",
+    "name": "Cloudflare Port 80 (TCP)",
+    "host": "1.1.1.1",
+    "method": "tcp",
+    "port": 80,
+    "url": null,
+    "group": "Public TCP Check",
+    "interval": 6,
+    "timeout": 2,
+    "active": true
+  },
+  {
+    "id": "3e77463f-c44d-4d81-8eb0-6aa6bcef7c28",
+    "name": "Localhost Loopback (ICMP)",
+    "host": "127.0.0.1",
+    "method": "icmp",
+    "port": null,
+    "url": null,
+    "group": "Local Network",
+    "interval": 3,
+    "timeout": 1,
+    "active": true
+  },
+  {
+    "id": "9a1a3349-f0c2-41ee-9869-1853b495be00",
+    "name": "Offline Test IP (ICMP)",
+    "host": "192.0.2.1",
+    "method": "icmp",
+    "port": null,
+    "url": null,
+    "group": "Testing",
+    "interval": 10,
+    "timeout": 2,
+    "active": true
+  },
+  {
+    "id": "07f2e307-0b14-4ca4-a3e5-c47c47d3f49f",
+    "name": "Closed Port 9999 (TCP)",
+    "host": "127.0.0.1",
+    "method": "tcp",
+    "port": 9999,
+    "url": null,
+    "group": "Testing",
+    "interval": 10,
+    "timeout": 1,
+    "active": true
+  }
+]

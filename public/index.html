@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Ping - Realtime IP Monitor</title>
+  <meta name="description" content="Dashboard monitoring IP multi-ping real-time yang modern, indah, dan cepat.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SVG Icon Library (Zero Dependencies, Offline-first) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>
+    </symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+      <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+    </symbol>
+    <symbol id="icon-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"></polyline>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+      <line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
+    </symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+    </symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </symbol>
+    <symbol id="icon-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line>
+    </symbol>
+    <symbol id="icon-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+      <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </symbol>
+  </svg>
+
+  <div class="app-container">
+    
+    <!-- Top Header Panel -->
+    <header class="glass-panel" id="main-header">
+      <div class="logo-section">
+        <div class="logo-icon">M</div>
+        <h1 class="logo-text">Multi-Ping</h1>
+      </div>
+      <div class="time-section" id="current-time">00:00:00</div>
+    </header>
+
+    <!-- Global Telemetry Overview Stats -->
+    <section class="stats-container" aria-label="Statistik Pemantauan">
+      <div class="stat-card glass-panel" id="stat-total">
+        <div class="stat-info">
+          <h3>Total Hosts</h3>
+          <div class="stat-value" id="val-total">0</div>
+        </div>
+        <div class="stat-icon"><svg width="24" height="24"><use href="#icon-database"></use></svg></div>
+      </div>
+      
+      <div class="stat-card glass-panel online" id="stat-online">
+        <div class="stat-info">
+          <h3>Online</h3>
+          <div class="stat-value" id="val-online">0</div>
+        </div>
+        <div class="stat-icon" style="color: var(--success);"><svg width="24" height="24"><use href="#icon-play"></use></svg></div>
+      </div>
+
+      <div class="stat-card glass-panel warning" id="stat-warning">
+        <div class="stat-info">
+          <h3>High Latency</h3>
+          <div class="stat-value" id="val-warning">0</div>
+        </div>
+        <div class="stat-icon" style="color: var(--warning);"><svg width="24" height="24"><use href="#icon-refresh"></use></svg></div>
+      </div>
+
+      <div class="stat-card glass-panel offline" id="stat-offline">
+        <div class="stat-info">
+          <h3>Offline</h3>
+          <div class="stat-value" id="val-offline">0</div>
+        </div>
+        <div class="stat-icon" style="color: var(--danger);"><svg width="24" height="24"><use href="#icon-pause"></use></svg></div>
+      </div>
+    </section>
+
+    <!-- Navigation Hub & Filters & Action Controls -->
+    <section class="controls-panel glass-panel" aria-label="Kontrol Panel">
+      <div class="filter-tabs" id="group-filters">
+        <button class="tab-btn active" data-group="all">Semua</button>
+        <!-- Dynamic group tags inject here -->
+      </div>
+      <div class="actions-group">
+        <button class="btn btn-primary" id="btn-add-host" onclick="openAddHostModal()">
+          <svg width="16" height="16"><use href="#icon-plus"></use></svg>
+          Tambah IP
+        </button>
+        <button class="btn btn-secondary" id="btn-options-toggle" onclick="toggleOptionsDrawer()">
+          <svg width="16" height="16"><use href="#icon-settings"></use></svg>
+          Pengaturan
+        </button>
+      </div>
+    </section>
+
+    <!-- Grid View of Host Monitored Cards -->
+    <main class="hosts-grid" id="hosts-grid-container">
+      <!-- Dynamic cards are dynamically generated and injected here by JS -->
+    </main>
+
+    <!-- Event Logs Terminal View -->
+    <footer class="terminal-panel glass-panel" aria-label="Log Aktivitas">
+      <div class="terminal-header">
+        <div class="terminal-title">
+          <div class="terminal-dot"></div>
+          <svg width="16" height="16"><use href="#icon-terminal"></use></svg>
+          <span>Live Activity Terminal Log</span>
+        </div>
+        <button class="btn-card-action" onclick="clearLogs()" title="Bersihkan Log">
+          <svg width="14" height="14"><use href="#icon-delete"></use></svg>
+        </button>
+      </div>
+      <div class="terminal-body" id="log-body-container">
+        <div class="log-entry log-system">
+          <span class="log-time">[00:00:00]</span> Sistem diinisialisasi. Menghubungkan ke server telemetry...
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Adding/Editing Host Dialog Sheet -->
+  <dialog id="hostModal" closedby="any" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h2 id="modalTitle" class="modal-title">Tambah IP Monitoring</h2>
+      <button class="modal-close" onclick="closeHostModal()">&times;</button>
+    </div>
+    <form id="hostForm" onsubmit="submitHostForm(event)">
+      <input type="hidden" id="form-host-id" value="">
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label for="form-name">Nama Label</label>
+          <input type="text" id="form-name" class="form-input" placeholder="contoh: Server Utama Cloud" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="form-method">Metode Monitoring</label>
+          <select id="form-method" class="form-input" onchange="handleMethodChange(this.value)">
+            <option value="icmp">ICMP Ping (Default)</option>
+            <option value="tcp">TCP Port Check</option>
+            <option value="http">HTTP/HTTPS Web Check</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="form-host-group">
+          <label for="form-host">Alamat IP / Hostname</label>
+          <input type="text" id="form-host" class="form-input" placeholder="contoh: 8.8.8.8 atau google.com" required autocomplete="off">
+        </div>
+
+        <div class="form-group" id="form-port-group" style="display: none;">
+          <label for="form-port">Port Jaringan</label>
+          <input type="number" id="form-port" class="form-input" placeholder="contoh: 80, 22, 3306" min="1" max="65535" value="80">
+        </div>
+
+        <div class="form-group" id="form-url-group" style="display: none;">
+          <label for="form-url">URL / Endpoint Web</label>
+          <input type="url" id="form-url" class="form-input" placeholder="contoh: https://www.google.com">
+        </div>
+
+        <div class="form-group" id="form-group-name-group">
+          <label for="form-group-name">Kategori / Grup</label>
+          <input type="text" id="form-group-name" class="form-input" placeholder="contoh: Public DNS, Local Server" autocomplete="off">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="form-interval">Interval (detik)</label>
+            <input type="number" id="form-interval" class="form-input" min="1" max="600" value="5" required>
+          </div>
+          <div class="form-group">
+            <label for="form-timeout">Timeout (detik)</label>
+            <input type="number" id="form-timeout" class="form-input" min="1" max="10" value="2" required>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeHostModal()">Batal</button>
+        <button type="submit" class="btn btn-primary" id="form-submit-btn">Simpan Monitor</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Options / Settings Overlay Panel -->
+  <aside class="options-overlay" id="options-drawer" aria-label="Drawer Pengaturan">
+    <div class="options-header">
+      <h2 class="modal-title">Pengaturan System</h2>
+      <button class="btn-icon" onclick="toggleOptionsDrawer()">
+        <svg width="18" height="18"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    
+    <div class="options-body">
+      
+      <section class="options-section">
+        <h3>Notifikasi & Alert</h3>
+        
+        <div class="option-row">
+          <span>Browser Notifications</span>
+          <label class="switch">
+            <input type="checkbox" id="opt-notifications" onchange="toggleNotifications(this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <span>Audio Alerts (Synth)</span>
+          <label class="switch">
+            <input type="checkbox" id="opt-audio" onchange="toggleAudio(this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group" style="margin-top: 0.5rem;">
+          <label for="opt-volume">Volume Alarm</label>
+          <input type="range" id="opt-volume" class="volume-slider" min="0" max="1" step="0.1" value="0.5" onchange="changeVolume(this.value)">
+        </div>
+      </section>
+
+      <section class="options-section">
+        <h3>Threshold Peringatan</h3>
+        <div class="form-group">
+          <label for="opt-warning-latency">High Latency Threshold (ms)</label>
+          <input type="number" id="opt-warning-latency" class="form-input" min="10" max="2000" value="150" onchange="updateWarningThreshold(this.value)">
+        </div>
+      </section>
+
+      <section class="options-section" style="margin-top: auto;">
+        <h3>Manajemen Konfigurasi</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+          <button class="btn btn-secondary" onclick="exportConfig()" style="justify-content: center;">
+            Ekspor Konfigurasi (.json)
+          </button>
+          <button class="btn btn-secondary" onclick="triggerImportClick()" style="justify-content: center;">
+            Impor Konfigurasi (.json)
+          </button>
+          <input type="file" id="import-file-input" style="display: none;" accept=".json" onchange="importConfig(event)">
+        </div>
+      </section>
+
+    </div>
+  </aside>
+
+  <!-- Load Client Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Static data runtime config
+# (Optional: uncomment if you want each user to have their own empty database)
+# data/hosts.json
+
+# Operating System Files
+.DS_Store
+Thumbs.db
